@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Shop Offline POS Pro</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Mobile Shop Offline POS Pro</h1>
+        <p>Initializing offline modules…</p>
+      </div>
+      <button id="continueBtn" class="btn-primary">Continue</button>
+    </div>
+  </div>
+  <script type="module">
+    import { initDB } from './assets/js/db.js';
+    import { getCurrentSession } from './assets/js/auth.js';
+    await initDB();
+    const btn = document.getElementById('continueBtn');
+    const go = () => window.location.href = getCurrentSession() ? 'dashboard.html' : 'login.html';
+    btn.addEventListener('click', go);
+    go();
+  </script>
+</body>
+</html>

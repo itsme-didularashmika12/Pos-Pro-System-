@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Mobile Shop Offline POS Pro</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <h2>POS Pro</h2>
+      <button class="nav-btn active" data-section="dashboardSection">Dashboard</button>
+      <button class="nav-btn" data-section="productsSection">Products</button>
+      <button class="nav-btn" data-section="billingSection">Billing POS</button>
+      <button class="nav-btn" data-section="reportsSection">Reports</button>
+      <button class="nav-btn" data-section="inventorySection">Inventory</button>
+      <button class="nav-btn" data-section="customersSection">Customers</button>
+      <button class="nav-btn" data-section="settingsSection">Settings</button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <strong id="shopTitle">Mobile Shop Offline POS Pro</strong>
+        <div>
+          <span id="userBadge"></span>
+          <button id="logoutBtn" class="btn-danger">Logout</button>
+        </div>
+      </div>
+
+      <div class="content">
+        <section id="dashboardSection" class="section active">
+          <div class="grid-cards" id="dashboardCards"></div>
+          <div id="lowStockBox" class="card"></div>
+        </section>
+
+        <section id="productsSection" class="section">
+          <div class="toolbar">
+            <input id="productSearch" placeholder="Search by name / IMEI / barcode">
+            <select id="categoryFilter"><option value="">All categories</option></select>
+            <button id="openProductModal" class="btn-primary">Add Product</button>
+            <button id="exportProducts" class="btn-muted">Export Products JSON</button>
+            <label class="btn-muted" style="display:flex;align-items:center;justify-content:center;">Import JSON <input type="file" id="importProducts" hidden></label>
+          </div>
+          <div class="table-wrap"><table id="productsTable"></table></div>
+        </section>
+
+        <section id="billingSection" class="section">
+          <p class="small">Shortcuts: <span class="kbd">F2</span> New Bill, <span class="kbd">F4</span> Checkout</p>
+          <div class="pos-grid">
+            <div class="card">
+              <div class="toolbar">
+                <input id="billSearch" placeholder="Scan barcode / search IMEI">
+                <button id="addToCartBtn" class="btn-primary">Add</button>
+              </div>
+              <div id="cartList"></div>
+            </div>
+            <div class="card">
+              <h3>Payment</h3>
+              <div class="total-line"><span>Subtotal</span><strong id="subTotal">0</strong></div>
+              <div class="total-line"><span>Discount (%)</span><input id="discountPercent" type="number" value="0"></div>
+              <div class="total-line"><span>Discount (fixed)</span><input id="discountFixed" type="number" value="0"></div>
+              <div class="total-line"><span>VAT</span><strong id="taxAmount">0</strong></div>
+              <div class="total-line"><span>Total</span><strong id="grandTotal">0</strong></div>
+              <label>Payment Method
+                <select id="paymentMethod"><option>Cash</option><option>Card</option></select>
+              </label>
+              <label>Paid Amount <input id="paidAmount" type="number" value="0"></label>
+              <div class="total-line"><span>Change</span><strong id="changeAmount">0</strong></div>
+              <button id="checkoutBtn" class="btn-primary">Complete Sale</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="reportsSection" class="section">
+          <div class="toolbar">
+            <input id="reportFrom" type="date">
+            <input id="reportTo" type="date">
+            <button id="runReports" class="btn-primary">Run Report</button>
+            <button id="exportCsv" class="btn-muted">Export CSV</button>
+          </div>
+          <div class="grid-cards" id="reportCards"></div>
+          <canvas id="salesChart" width="1000" height="280"></canvas>
+          <div class="card"><h4>Top Selling Products</h4><div id="topProducts"></div></div>
+        </section>
+
+        <section id="inventorySection" class="section">
+          <div class="toolbar">
+            <button id="stockInBtn" class="btn-primary">Stock In</button>
+            <button id="stockOutBtn" class="btn-muted">Stock Out</button>
+            <button id="supplierBtn" class="btn-muted">Add Supplier</button>
+          </div>
+          <div class="grid-cards" id="inventoryCards"></div>
+          <div class="table-wrap"><table id="purchaseTable"></table></div>
+        </section>
+
+        <section id="customersSection" class="section">
+          <div class="toolbar">
+            <button id="addCustomerBtn" class="btn-primary">Add Customer</button>
+            <input id="customerSearch" placeholder="Search customer phone or name">
+          </div>
+          <div class="table-wrap"><table id="customersTable"></table></div>
+        </section>
+
+        <section id="settingsSection" class="section">
+          <div class="card form-grid">
+            <label>Shop Name <input id="setShopName"></label>
+            <label>Address <input id="setAddress"></label>
+            <label>Phone <input id="setPhone"></label>
+            <label>Tax % <input id="setTax" type="number" min="0" max="100"></label>
+            <label>Currency <input id="setCurrency" value="LKR"></label>
+            <label>Logo <input id="setLogo" type="file" accept="image/*"></label>
+            <label><input id="setDarkMode" type="checkbox" style="width:auto"> Dark Mode</label>
+            <button id="saveSettings" class="btn-primary">Save Settings</button>
+            <button id="backupBtn" class="btn-muted">Backup Full Database</button>
+            <label class="btn-muted" style="display:flex;align-items:center;justify-content:center;">Restore DB <input type="file" id="restoreInput" hidden></label>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal" id="appModal"><div class="modal-card" id="modalBody"></div></div>
+  <div id="receiptPrint"></div>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

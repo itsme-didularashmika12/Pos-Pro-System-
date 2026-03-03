@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Mobile Shop Offline POS Pro</title>
+  <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body>
+  <div class="login-wrap">
+    <div class="login-card">
+      <div class="login-header">
+        <h1>Welcome Back</h1>
+        <p>Admin demo: <b>admin / admin123</b> &nbsp;|&nbsp; Cashier demo: <b>cashier / cashier123</b></p>
+      </div>
+      <form id="loginForm" class="form-grid">
+        <label>Username <input required name="username" autocomplete="username"></label>
+        <label>Password <input required type="password" name="password" autocomplete="current-password"></label>
+        <button class="btn-primary" type="submit">Login</button>
+      </form>
+      <div id="loginMessage" class="small"></div>
+    </div>
+  </div>
+  <script type="module" src="assets/js/auth.js"></script>
+</body>
+</html>
